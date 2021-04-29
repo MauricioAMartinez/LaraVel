@@ -1,0 +1,21 @@
+**-------MIGRATE Y ARTISAN----------**
+
+1.Crear una tabla
+php artisan make:migration create_categories_table --create=categories
+2.Ingresar los tipos de datos a  la tabla
+php artisan migrate
+3.Regresar el ultimo cambio en la tabla
+php artisan migrate:rollback
+4.Comando para refrescar las tablas con los datos
+php artisan migrate:refresh
+5.Crear seeder (donde rellenaremos las tablas)
+php artisan make:seeder ProductsSeeder
+6.actualizar el seeder con los datos
+php artisan db:seed
+7.Comando para realizar migrate y artisan
+
+
+**-------ELOQUENT----------**
+1.php artisan make:model Product
+Generar el modelo de la tabla, donde se accede a sus items
+
