@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Faker\factory as Faker;
-use Illuminate\Support\Facades\DB;
 
 class CategoriesSeeder extends Seeder
 {
@@ -15,14 +14,6 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for ($i=0; $i <50 ; $i++) { 
-            DB::table('categories')->insert([
-                'created_at'=>$faker->dateTime($max = 'now', $timezone = null),
-                'updated_at'=>$faker->dateTime($max = 'now', $timezone = null),
-                'name' => 'category'.$i 
-            ]);
-            
-        }
+        Category::factory(50)->create();
     }
 }

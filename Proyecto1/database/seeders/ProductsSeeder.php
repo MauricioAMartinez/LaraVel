@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use DateTime;
 use Illuminate\Database\Seeder;
 use Faker\factory as Faker;
@@ -17,17 +18,6 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for ($i=0; $i <50 ; $i++) { 
-            DB::table('products')->insert([
-                'name' => 'product'.$i ,
-                'description'=> $faker->text($maxNochars=100),
-                'price'=> $faker->numberBetween(10000,1000000),
-                'available'=> $faker->boolean($chanceOfGettingTrue = 50),
-                'created_at' =>$faker->dateTime($max = 'now',$timezone =null),
-                'updated_at' =>$faker->dateTime($max = 'now',$timezone =null),
-            ]);
-            
-        }
+        Product::factory(50)->create();
     }
 }
