@@ -1,7 +1,10 @@
 <?php
 
-use App\Models\Order;
+
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\productosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +21,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
-Route::get('/pruebaproductos', function () {
-    $order1=Order::find(1);
-    do($order1->products);
-});*/
+Route::get('products', productosController::class);

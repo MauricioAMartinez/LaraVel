@@ -14,13 +14,13 @@ php artisan make:seeder ProductsSeeder
 php artisan db:seed
 7.Comando para realizar migrate y artisan
 8.Correr un seader en especifico 
-php artisan db:seed --class-nombreseader
+php artisan db:seed --class= imagesSeeder
 9.LLenar Bases con factory
 php artisan make:factory ImagesFactory
 
 
 **-------ELOQUENT----------**
-1.php artisan make:model Product
+10.php artisan make:model Product
 Generar el modelo de la tabla, donde se accede a sus items
 singular sin S al final --** protected $table_name= "";**--
 cuando alla S alfinal 
