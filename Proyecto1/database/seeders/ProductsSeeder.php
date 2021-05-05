@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
-use DateTime;
 use Illuminate\Database\Seeder;
-use Faker\factory as Faker;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-
 
 class ProductsSeeder extends Seeder
 {
@@ -18,6 +15,107 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(50)->create();
+        $faker = Faker::create();
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => 'Figura Shenlong 10',
+            'description' => 'Funko POP Dragon Ball Anime Shenron, Esferas Del Dragon',
+            'price' => 249900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Evil Buu',
+            'description' => 'Figura Evil Buu Funko POP Dragon Ball Anime',
+            'price' => 69900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Majin Vegeta Super Saiyayin',
+            'description' => 'Figura Majin Vegeta Super Saiyayin Funko POP Dragon Ball Anime',
+            'price' => 69900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Reptar COCOCAT Rugrats',
+            'description' => 'Medias Largas Reptar COCOCAT Rugrats Animados',
+            'price' => 25900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Jack Skellington ',
+            'description' => 'Medias Largas Jack Skellington y Zero COCOCAT The Nightmaer Before Christmas Disney',
+            'price' => 25900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Reptar Hyp Rugrats ',
+            'description' => 'Medias Reptar Hyp Rugrats Animados Set X 2',
+            'price' => 51329,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Gorra Rick PT Rick ',
+            'description' => 'Gorra Rick PT Rick and Morty Animados Pickle Rick con Mosaico',
+            'price' => 45900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Gorra Malla Cuphead',
+            'description' => 'Gorra Malla Cuphead Pictograma Cuphead Videojuegos Pixel Art',
+            'price' => 40900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Maleta Deadpool',
+            'description' => 'Maleta Deadpool PT Marvel Bolsillos cafes',
+            'price' => 199900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Mochila Academia Cosplay',
+            'description' => 'y Hero Luminoso Mochila Academia Cosplay con puerto de carga USB Bookbag Daypack (Entrega de 4 a 5 semanas una vez realizado el pago)',
+            'price' => 159900,
+            'available' => 1
+        ]);
+        DB::table('products')->insert([
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'name' => ' Maleta Grande Batman',
+            'description' => 'Maleta Grande Batman PT Batman DC Comics En cuerina (Reflectiva)',
+            'price' => 210900,
+            'available' => 1
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

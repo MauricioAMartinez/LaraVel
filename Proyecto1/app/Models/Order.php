@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    public function products (){
-       return $this->belongsToMany(products::class,'orders_has_product')
+
+    public function products () {
+       return $this->belongsToMany(Product::class,'orders_has_products')
        ->withPivot('amount')
        ->withTimestamps();
     }
-
 }
