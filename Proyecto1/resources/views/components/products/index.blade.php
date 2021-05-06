@@ -26,38 +26,36 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="filter-category-container">
-                                    <div class="filter__category-wrapper">
+                                <div class="filter__category-wrapper">
 
-                                        <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter="*">ALL</button></div>
-                                    <div class="filter__category-wrapper">
+                                        <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter="*">ALL</button>
+                                        
+                                        </div>
+                                  @foreach ($categories as $cat)
+                                      <div class="filter__category-wrapper">
 
-                                        <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".headphone">HEADPHONES</button></div>
-                                    <div class="filter__category-wrapper">
-
-                                        <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".smartphone">SMARTPHONES</button></div>
-                                    <div class="filter__category-wrapper">
-
-                                        <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".sportgadget">SPORT GADGETS</button></div>
-                                    <div class="filter__category-wrapper">
-
-                                        <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".dslr">DSLR</button></div>
+                                        <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter=".{{ strtoupper( $cat->name )}}">{{ strtoupper( $cat->name )}}</button>
+                                        
+                                        </div>
+                                @endforeach
+                                  
+                                    
                                 </div>
                                 <div class="filter__grid-wrapper u-s-m-t-30">
+                                    <div class="row">
                                     @foreach ($products as $product)
-                                    <div class="row"> 
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item headphone">
+                                          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item 
+                                            @foreach ($product->categories as $category)
+                                                        {{ strtoupper( $category->name ) }}
+                                            @endforeach
+                               
+                                          ">
                                             <div class="product-o product-o--hover-on product-o--radius">
                                                 <div class="product-o__wrap">
-                                                  
+
                                                     <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-                                           
-                                                        <img class="aspect__img" src="
-                                                        @if(count($product->images)>0)
-                                                        {{$product->images[0]->url}}
-                                                        @else
-                                                        https://via.placeholder.com/200x200.png?text=no+hay+imagenes
-                                                        @endif
-                                                        " alt=""></a>
+
+                                                        <img class="aspect__img" src="{{count($product->images) > 0 ? $product->images[0]->url : 'images/product/electronic/product2.jpg'}}" alt=""></a>
                                                     <div class="product-o__action-wrap">
                                                         <ul class="product-o__action-list">
                                                             <li>
@@ -77,29 +75,29 @@
                                                 </div>
 
                                                 <span class="product-o__category">
-
-                                                    <a href="shop-side-version-2.html">CATEGORY</a></span>
+                                                    @foreach ($product->categories as $category)
+                                                         <a href="shop-side-version-2.html">{{ strtoupper( $category->name ) }}</a> 
+                                                    @endforeach
+                            
+                                                </span>
 
                                                 <span class="product-o__name">
 
-                                                    <a href="product-detail.html"> {{$product->name}} </a></span>
+                                                    <a href="{{  route ('products.show', ['product' => $product->id] )   }}">{{ $product->name }}</a></span>
                                                 <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
 
                                                     <span class="product-o__review">(23)</span></div>
 
-                                                <span class="product-o__price">{{$product->price}}
+                                                <span class="product-o__price">${{ number_format( $product->price)}}
 
-                                                    <span class="product-o__discount">$160.00</span></span>
-                                                   
+                                                    <span class="product-o__discount">${{($product->price*$product->discount/100)+$product->price}}</span></span>
                                             </div>
-                                           
                                         </div>
-                                    </div>
                                     @endforeach
+                                    
+                                    </div>
                                 </div>
-                              
                             </div>
-                            
                             <div class="col-lg-12">
                                 <div class="load-more">
 

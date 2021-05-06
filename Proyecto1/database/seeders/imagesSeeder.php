@@ -79,12 +79,34 @@ class ImagesSeeder extends Seeder
             
         ]);
         DB::table('images')->insert([
-            'url' => 'https://toogeek.co/wp-content/uploads/2021/03/B07NVP9VD7.jpg',
+            'url' => 'https://i0.wp.com/toogeek.co/wp-content/uploads/2021/03/B07NVP9VD7.jpg?fit=946%2C942&ssl=1',
             'product_id' => 10,
             'created_at' => $faker->dateTime($max = 'now', $timezone = null),
             'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
             
         ]);
+        DB::table('images')->insert([
+            'url' => 'https://i0.wp.com/toogeek.co/wp-content/uploads/2021/03/B07NVP9VD7-1.jpg?fit=700%2C994&ssl=1',
+            'product_id' => 10,
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            
+        ]);
+        DB::table('images')->insert([
+            'url' => 'https://i0.wp.com/toogeek.co/wp-content/uploads/2021/03/B07NVP9VD7-2.jpg?fit=1000%2C732&ssl=1',
+            'product_id' => 10,
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            
+        ]);
+        DB::table('images')->insert([
+            'url' => 'https://i2.wp.com/toogeek.co/wp-content/uploads/2021/03/B07NVP9VD7-3.jpg?fit=627%2C994&ssl=1',
+            'product_id' => 10,
+            'created_at' => $faker->dateTime($max = 'now', $timezone = null),
+            'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
+            
+        ]);
+       
         DB::table('images')->insert([
             'url' => 'https://toogeek.co/wp-content/uploads/2020/12/mal0078.jpeg',
             'product_id' => 11,

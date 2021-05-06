@@ -17,6 +17,8 @@ php artisan db:seed
 php artisan db:seed --class= imagesSeeder
 9.LLenar Bases con factory
 php artisan make:factory ImagesFactory
+10.Agregar Columnas sin eliminar la tabla 
+php artisan make:migration add_nombredelacolumna_to_nombredelatabla_table
 
 
 **-------ELOQUENT----------**
@@ -24,3 +26,17 @@ php artisan make:factory ImagesFactory
 Generar el modelo de la tabla, donde se accede a sus items
 singular sin S al final --** protected $table_name= "";**--
 cuando alla S alfinal 
+
+
+**___VistaControlador______**
+11.Crear el controlador
+php artisan make:controller ProductController
+12.Crear el controlador ligando al modelo 
+php artisan make:controller ProductController --resource --model=Product
+13. Identificar que rutas estan ligadas al controlador
+php artisan route:list
+
+-----------------------------------------------
+Si se genera copia de otro proyecto usar
+composer Update
+php artisan config:cache

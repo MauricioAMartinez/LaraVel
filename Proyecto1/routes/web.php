@@ -1,11 +1,7 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
-use Database\Seeders\ProductsSeeder;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-// productos?cats=1,2,3,4
-Route::get('/products', function () {
+// // productos?cats=1,2,3,4
+// Route::get('/productos', function () {
 
-    $products = Product::where('available',true)->get();
+//     $productos = Product::where('available',true)->get();
 
-    //dd($productos[0]->images[0]->url);
-    return view('components.products',compact('products'));
+//     //dd($productos[0]->images[0]->url);
+//     return view('components.products', compact ('productos'));
 
-});
+// });
+
+
+Route::resource('products', ProductController::class);
