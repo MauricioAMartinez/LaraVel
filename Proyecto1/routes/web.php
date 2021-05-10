@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Models\Category;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +16,9 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-// // productos?cats=1,2,3,4
-// Route::get('/productos', function () {
-
-//     $productos = Product::where('available',true)->get();
-
-//     //dd($productos[0]->images[0]->url);
-//     return view('components.products', compact ('productos'));
-
-// });
-
-
 Route::resource('products', ProductController::class);
+Route::get('loadmore', function () {
+    $categories = Category::all(); 
+    $products = Product::all();
+    return view('components/products.loadmore',compact('products','categories'));
+});

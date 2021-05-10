@@ -29,15 +29,10 @@
                                     <div id="pd-o-initiate">
                                         <div class="pd-o-img-wrap" data-src="@if(count($product->images)>0)
                                             {{$product->images[0]->url}}
-                                            @else
-                                            https://via.placeholder.com/200x200.png?text=no+hay+imagenes
                                             @endif">
-
                                             <img class="u-img-fluid" src="@if(count($product->images)>0)
                                             {{$product->images[0]->url}}
-                                            @else
-                                            https://via.placeholder.com/200x200.png?text=no+hay+imagenes
-                                            @endif" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
+                                            @endif" data-zoom-image="{{$product->images[0]->url}}" alt=""></div>
                                         
                                     </div>
 
@@ -46,10 +41,14 @@
                                 <div class="u-s-m-t-15">
                                     <div class="slider-fouc">
                                         <div id="pd-o-thumbnail">
+                                            @for ($i = 0; $i < count($product->images); $i++)
                                             <div>
-
-                                                <img class="u-img-fluid" src="{{$product->images}} " alt=""></div>
-                                            
+                                                <img class="u-img-fluid" src="
+                                                 @if(  count($product->images)>0)
+                                                {{$product->images[$i]->url}}
+                                                @endif" alt=""> 
+                                            </div>
+                                            @endfor
                                         </div>
                                     </div>
                                 </div>
@@ -71,11 +70,10 @@
                                         <span class="pd-detail__discount">({{$product->discount}}% OFF)</span><del class="pd-detail__del">{{($product->price*$product->discount/100)+$product->price}}</del></div>
                                 </div>
                                 <div class="u-s-m-b-15">
-                                    <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-
+                                    <div class="pd-detail__rating gl-rating-style">  <i class="fas fa-star"></i>                                      
                                         <span class="pd-detail__review u-s-m-l-4">
-
-                                            <a data-click-scroll="#view-review">{{$product->review}} Reviews</a></span></div>
+                                            <a data-click-scroll="#view-review">{{count($reviews)}} Reviews</a></span></div>
+                                            
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
@@ -184,8 +182,8 @@
                                         <li class="nav-item">
 
                                             <a class="nav-link" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
-
-                                                <span> {{$product->review}} </span></a></li>
+                                                
+                                                <span>  </span></a></li>
                                     </ul>
                                 </div>
                                 <div class="tab-content">
@@ -196,7 +194,7 @@
                                             <div class="u-s-m-b-15">
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                                             </div>
-                                            <div class="u-s-m-b-30"><iframe src=" {{$product->urlvideo}} " allowfullscreen></iframe></div>
+                                            <div class="u-s-m-b-30"><iframe width="560" height="315" src=" {{$product->urlvideo}} " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                                             <div class="u-s-m-b-30">
                                                 <ul>
                                                     <li><i class="fas fa-check u-s-m-r-8"></i>
@@ -286,7 +284,7 @@
                                             <div class="u-s-m-b-30">
                                                 <div class="pd-tab__rev-score">
                                                     <div class="u-s-m-b-8">
-                                                        <h2> {{$product->review}} Reviews - 4.6 (Overall)</h2>
+                                                        <h2> {{count($reviews)}} Reviews - 4.6 (Overall)</h2>
                                                     </div>
                                                     <div class="gl-rating-style-2 u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                                                     <div class="u-s-m-b-8">
@@ -300,7 +298,7 @@
                                                 <form class="pd-tab__rev-f1">
                                                     <div class="rev-f1__group">
                                                         <div class="u-s-m-b-15">
-                                                            <h2>23 Review(s) for Man Ruched Floral Applique Tee</h2>
+                                                            <h2>{{count($reviews)}} Review(s) for Man Ruched Floral Applique Tee</h2>
                                                         </div>
                                                         <div class="u-s-m-b-15">
 
@@ -309,40 +307,27 @@
                                                                 <option>Sort by: Worst Rating</option>
                                                             </select></div>
                                                     </div>
+                                                    
                                                     <div class="rev-f1__review">
+                                                        @foreach ($reviews as $review)
                                                         <div class="review-o u-s-m-b-15">
                                                             <div class="review-o__info u-s-m-b-8">
+                                                                <span class="review-o__name"> 
+                                                                    @if ($review->product_id===$product->id) 
+                                                                        {{$review->name}} 
+                                                                        @endif
+                                                                    
+                                                                    </span>
 
-                                                                <span class="review-o__name">John Doe</span>
+                                                                <span class="review-o__date"> {{$review->created_at}} </span></div>
+                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"> @for ($i = 0; $i < $review->score; $i++)
+                                                                
+                                                             <i class="fas fa-star"></i>@endfor
 
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                <span>( {{$review->score}} )</span></div>
+                                                            <p class="review-o__text"> {{$review->review}} </p>
                                                         </div>
-                                                        <div class="review-o u-s-m-b-15">
-                                                            <div class="review-o__info u-s-m-b-8">
-
-                                                                <span class="review-o__name">John Doe</span>
-
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                        </div>
-                                                        <div class="review-o u-s-m-b-15">
-                                                            <div class="review-o__info u-s-m-b-8">
-
-                                                                <span class="review-o__name">John Doe</span>
-
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
                                                 </form>
                                             </div>

@@ -31,10 +31,10 @@
                                         <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter="*">ALL</button>
                                         
                                         </div>
-                                  @foreach ($categories as $cat)
+                                  @foreach ($categories as $category)
                                       <div class="filter__category-wrapper">
 
-                                        <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter=".{{ strtoupper( $cat->name )}}">{{ strtoupper( $cat->name )}}</button>
+                                        <button class="btn filter__btn filter__btn--style-1 js-checked" type="button" data-filter=".{{ strtoupper( $category->name )}}">{{ strtoupper( $category->name )}}</button>
                                         
                                         </div>
                                 @endforeach
@@ -52,7 +52,8 @@
                                           ">
                                             <div class="product-o product-o--hover-on product-o--radius">
                                                 <div class="product-o__wrap">
-
+                                                    
+                                                    
                                                     <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
 
                                                         <img class="aspect__img" src="{{count($product->images) > 0 ? $product->images[0]->url : 'images/product/electronic/product2.jpg'}}" alt=""></a>
@@ -101,7 +102,8 @@
                             <div class="col-lg-12">
                                 <div class="load-more">
 
-                                    <button class="btn btn--e-brand" type="button">Load More</button></div>
+                                    <button class="btn btn--e-brand" type="button"><a href="# ">Load More</a> </button></div>
+                                    pendiente del route
                             </div>
                         </div>
                     </div>

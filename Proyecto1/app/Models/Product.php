@@ -12,6 +12,10 @@ class Product extends Model
     public function images() {
         return $this->hasMany(Image::class);
     }
+    public function review() {
+        return $this->hasMany(Review::class);
+    }
+    
 
     public function orders() {
         return $this->belongsToMany(Order::class,'orders_has_products');

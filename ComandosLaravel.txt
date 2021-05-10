@@ -1,4 +1,4 @@
-**-------MIGRATE Y ARTISAN----------**
+**-------MIGRATE---------**
 
 1.Crear una tabla
 php artisan make:migration create_categories_table --create=categories
@@ -8,6 +8,9 @@ php artisan migrate
 php artisan migrate:rollback
 4.Comando para refrescar las tablas con los datos
 php artisan migrate:refresh
+
+**-------SEEDERS----------**
+
 5.Crear seeder (donde rellenaremos las tablas)
 php artisan make:seeder ProductsSeeder
 6.actualizar el seeder con los datos
@@ -40,3 +43,5 @@ php artisan route:list
 Si se genera copia de otro proyecto usar
 composer Update
 php artisan config:cache
+
+
