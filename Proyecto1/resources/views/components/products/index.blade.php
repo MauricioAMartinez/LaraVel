@@ -85,9 +85,15 @@
                                                 <span class="product-o__name">
 
                                                     <a href="{{  route ('products.show', ['product' => $product->id] )   }}">{{ $product->name }}</a></span>
-                                                <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-
-                                                    <span class="product-o__review">(23)</span></div>
+                                                <div class="product-o__rating gl-rating-style">
+                                                    <i class="fas fa-star"></i>
+                                                    @foreach ($reviews as $review)
+                                                    @endforeach
+                                                    <span class="product-o__review">
+                                                        @if ($review->product_id = $product->id)
+                                                         
+                                                        @endif
+                                                          </span></div>
 
                                                 <span class="product-o__price">${{ number_format( $product->price)}}
 
@@ -102,7 +108,7 @@
                             <div class="col-lg-12">
                                 <div class="load-more">
 
-                                    <button class="btn btn--e-brand" type="button"><a href="# ">Load More</a> </button></div>
+                                    <button class="btn btn--e-brand" type="button">LOAD MORE </button></div>
                                     pendiente del route
                             </div>
                         </div>

@@ -8,8 +8,7 @@ use App\Models\Image;
 use App\Models\ProductHasCategory;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use PhpParser\Node\Stmt\Return_;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class ProductController extends Controller
 {
@@ -20,11 +19,14 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        
         $products = Product::paginate(4);
         $categories = Category::all();
-        return view('components/products.index',compact('products','categories'));
+        $reviews = Review::all();
+        return view('components/products.index',compact('products','categories','reviews'));
+        
     }
+
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -81,6 +83,8 @@ class ProductController extends Controller
         $newImageProduct ->url = $newProduct['images'];
         $newImageProduct->save();
 
+        return redirect()->route('products.index');
+
     }
 
     /**
@@ -91,13 +95,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       
         $reviews = Review::where('product_id',$product->id)->get();
-      
-        
-
-  
         return view('components/products.show',compact('product','reviews'));
+
+       
+        
+     
     }
 
     /**

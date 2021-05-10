@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
@@ -17,6 +18,7 @@ use App\Models\Product;
 */
 
 Route::resource('products', ProductController::class);
+Route::resource('cart', CartController::class);
 Route::get('loadmore', function () {
     $categories = Category::all(); 
     $products = Product::all();

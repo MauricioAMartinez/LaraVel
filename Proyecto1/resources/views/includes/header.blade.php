@@ -8,7 +8,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="index.html">
+                        <a class="main-logo" href="{{ route('products.index') }}">
 
                             <img src="{{asset('images/logo/logo-1.png')}}" alt=""></a>
                         <!--====== End - Main Logo ======-->
@@ -1319,7 +1319,7 @@
 
                                                     <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
 
-                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>
+                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="{{ route('cart.index') }}">VIEW CART</a></div>
                                             </div>
                                             <!--====== End - Mini Product Statistics ======-->
                                         </div>

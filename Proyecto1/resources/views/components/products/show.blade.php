@@ -70,7 +70,18 @@
                                         <span class="pd-detail__discount">({{$product->discount}}% OFF)</span><del class="pd-detail__del">{{($product->price*$product->discount/100)+$product->price}}</del></div>
                                 </div>
                                 <div class="u-s-m-b-15">
-                                    <div class="pd-detail__rating gl-rating-style">  <i class="fas fa-star"></i>                                      
+                                    <?php 
+                                                $total = 0;
+                                                foreach ($reviews as $key) {
+                                                    $total+=$key->score;
+                                                }
+                                                $total/=count($reviews);
+                                                
+                                            ?>
+                                            
+                                    <div class="pd-detail__rating gl-rating-style"> @for ($i = 0; $i < $total; $i++)
+                                                                
+                                        <i class="fas fa-star"></i>@endfor
                                         <span class="pd-detail__review u-s-m-l-4">
                                             <a data-click-scroll="#view-review">{{count($reviews)}} Reviews</a></span></div>
                                             
@@ -88,7 +99,7 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+                                        <span class="pd-detail__click-wrap"> <i class="far fa-heart u-s-m-r-6"></i>
 
                                             <a href="signin.html">Add to Wishlist</a>
 
