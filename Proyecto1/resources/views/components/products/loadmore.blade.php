@@ -383,11 +383,9 @@
 
                                     <span>Related Searches:</span>
 
-                                    <a class="gl-tag btn--e-brand-shadow" href="#">men's clothing</a>
+                                    <a class="gl-tag btn--e-brand-shadow" href="#"  > {{$category->name}} </a>
 
-                                    <a class="gl-tag btn--e-brand-shadow" href="#">mobiles & tablets</a>
-
-                                    <a class="gl-tag btn--e-brand-shadow" href="#">books & audible</a></div>
+                            
                             </div>
                             <div class="shop-p__tool-style">
                                 <div class="tool-style__group u-s-m-b-8">
@@ -422,7 +420,7 @@
                                     <div class="product-m">
                                         <div class="product-m__thumb">
 
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{  route ('products.show', ['product' => $product->id] )   }}">
 
                                                 <img class="aspect__img" src="{{ count($product->images) > 0 ? $product->images[0]->url : 'images/product/electronic/product2.jpg' }}" alt=""></a>
                                             <div class="product-m__quick-look">
@@ -439,7 +437,7 @@
                                                 <a href="shop-side-version-2.html">  {{$category->name}} </a></div>
                                             <div class="product-m__name">
                                               
-                                                <a href="product-detail.html">{{ $product->name }}</a></div>
+                                                <a href="{{  route ('products.show', ['product' => $product->id] )   }}">{{ $product->name }}</a></div>
                                             <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                                 <span class="product-m__review">()</span></div>

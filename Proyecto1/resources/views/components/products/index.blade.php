@@ -108,8 +108,8 @@
                             <div class="col-lg-12">
                                 <div class="load-more">
 
-                                    <button class="btn btn--e-brand" type="button">LOAD MORE </button></div>
-                                    pendiente del route
+                                    <button class="btn btn--e-brand" type="button" ><a href="{{url('/loadmore')}}"> LOADMORE </a></button></div>
+                                    
                             </div>
                         </div>
                     </div>
