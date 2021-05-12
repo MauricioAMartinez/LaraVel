@@ -19,8 +19,11 @@ use App\Models\Product;
 
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
-Route::get('loadmore', function () {
+Route::get('cart/addOne/{product}', [CartController::class, 'addOne'])->name('cart.addOne');
+Route::get('cart/destroy/{id}', [CartController::class,'destroy'])->name('cart.destroy');
+Route::get('products/{loadmore}', [CartController::class, 'loadmore'])->name('products.loadmore');
+/*Route::get('loadmore', function () {
     $categories = Category::all(); 
     $products = Product::all();
     return view('components/products.loadmore',compact('products','categories'));
-});
+});*/

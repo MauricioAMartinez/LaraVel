@@ -25,7 +25,12 @@ class ProductController extends Controller
         return view('components/products.index',compact('products','categories','reviews'));
         
     }
-
+ 
+    public function loadmore (){
+        $categories = Category::all(); 
+        $products = Product::all();
+        return view('components/products.loadmore',compact('products','categories'));
+    }
  
 
     /**
@@ -87,6 +92,8 @@ class ProductController extends Controller
 
     }
 
+    
+
     /**
      * Display the specified resource.
      *
@@ -134,6 +141,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        
     }
 }

@@ -11,7 +11,7 @@
                                 <ul class="pd-breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.hml">Home</a></li>
+                                        <a href="{{route('products.index')}} ">Home</a></li>
                                     <li class="has-separator">
 
                                         <a href="shop-side-version-2.html"> @foreach ($product->categories as $category)
@@ -134,28 +134,31 @@
                                     </ul>
                                 </div>
                                 <div class="u-s-m-b-15">
-                                    <form class="pd-detail__form">
+                                    <form class="pd-detail__form" method="POST" action="{{ route('cart.store') }}">
+                                        @csrf
+                                        <input type="hidden" name="productId" value="{{ $product->id }}">
                                         <div class="pd-detail-inline-2">
                                             <div class="u-s-m-b-15">
-
                                                 <!--====== Input Counter ======-->
                                                 <div class="input-counter">
-
+       
                                                     <span class="input-counter__minus fas fa-minus"></span>
-
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
-
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
+       
+                                                    <input class="input-counter__text input-counter--text-primary-style"
+                                                        name="amount" type="text" value="1" data-min="1" data-max="1000">
+       
+                                                    <span class="input-counter__plus fas fa-plus"></span>
+                                                </div>
                                                 <!--====== End - Input Counter ======-->
                                             </div>
                                             <div class="u-s-m-b-15">
-
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+       
+                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="u-s-m-b-15">
-
                                     <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
                                     <ul class="pd-detail__policy-list">
                                         <li><i class="fas fa-check-circle u-s-m-r-8"></i>
@@ -306,7 +309,8 @@
                                                 </div>
                                             </div>
                                             <div class="u-s-m-b-30">
-                                                <form class="pd-tab__rev-f1">
+                                                <form class="pd-tab__rev-f1" >
+                                                    @csrf
                                                     <div class="rev-f1__group">
                                                         <div class="u-s-m-b-15">
                                                             <h2>{{count($reviews)}} Review(s) for Man Ruched Floral Applique Tee</h2>

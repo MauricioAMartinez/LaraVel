@@ -61,10 +61,14 @@
                                                         <ul class="product-o__action-list">
                                                             <li>
 
-                                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus">
+                                                                    </i>
+                                                                </a>
+                                                                </li>
                                                             <li>
 
-                                                                <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                <a href="{{ route('cart.addOne', ['product' => $product->id]) }}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                
                                                             <li>
 
                                                                 <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
@@ -108,7 +112,7 @@
                             <div class="col-lg-12">
                                 <div class="load-more">
 
-                                    <button class="btn btn--e-brand" type="button" ><a href="{{url('/loadmore')}}"> LOADMORE </a></button></div>
+                                    <button class="btn btn--e-brand" type="button" ><a href="{{route('products.loadmore','loadmore')}}"> LOADMORE </a></button></div>
                                     
                             </div>
                         </div>
