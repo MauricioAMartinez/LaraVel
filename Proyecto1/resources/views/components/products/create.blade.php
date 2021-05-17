@@ -3,6 +3,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+
  <div class="u-s-p-b-60">
 
                 <!--====== Section Intro ======-->
@@ -18,8 +19,9 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
-                                <form method='post' action="{{ route('products.store')}}" >
+                                <form method='post' action="{{ route('products.store')}}" enctype="multipart/form-data">
                                   @csrf
+                                
                                  
   <div class="form-group">
     <label for="name">Name</label>
@@ -65,24 +67,33 @@
     @endforeach
     </select>
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-        <div class="form-group">
-            <strong>Urlimage:</strong>
-            <input type="text" name="images" class="form-control" placeholder="Insert Image Link Here" maxlength="50" value="https://caracoltv.brightspotcdn.com/dims4/default/3ed148c/2147483647/strip/true/crop/1148x797+0+0/resize/1200x833!/quality/90/?url=http%3A%2F%2Fcaracol-brightspot.s3.amazonaws.com%2Fd0%2F1f%2F88c08d3e4d51af7e07efa2ea5d0b%2Fgandalf.png">
-        </div>
-    </div>
-
-   
-    <div class="col-sm-12 text-center">
-        <a href="javascript: history.go(-1)" class="btn btn-success">Cancel</a>
-        <button type="submit" class="btn btn-primary">Submit</button>
+ <label for="">Porfavor ingrese la url de la imagen si se encuentra en la red o agregela subiendo el archivo</label>
+ <div class="row">
+  <div class="col-sm-12">
+      <div class="form-group">
+          <strong>Image:</strong>
+          <input type="text" name="urlimage" class="form-control" placeholder="url" >
+      </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="form-group">
+        <strong>Imagen:</strong>
+        <input type="file" name="images">
     </div>
 </div>
   
+      </div>
+      <div class="col-sm-12 text-center">
+          <a href="javascript: history.go(-1)" class="btn btn-success">CANCELAR</a>
+          <button type="submit" class="btn btn-primary">ENVIAR</button>
+      </div>
+  </div>
+
+
+
  
 
-</form>                         
+  </form>                         
                                 </div>
                             </div>
                         </div>

@@ -69,7 +69,7 @@
                                                         <span class="table-p__name">
 
                                                             <a
-                                                                href="product-detail.html">{{ $cartProduct['product']->name }}</a></span>
+                                                                href="{{  route ('products.show', ['product' => $cartProduct['product']->id] )   }}">{{ $cartProduct['product']->name }}</a></span>
 
                                                         <span class="table-p__category">
 
@@ -94,7 +94,7 @@
                                             <td>
 
                                                 <span class="table-p__price">$
-                                                    {{ $cartProduct['product']->price * $cartProduct['amount'] }}
+                                                    {{number_format( $cartProduct['product']->price * $cartProduct['amount']) }}
                                                 </span>
                                             </td>
                                             <td>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="route-box__g2">
 
-                                <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
+                                <a class="route-box__link" href="{{ route('cart.destroyAll')}}"><i class="fas fa-trash"></i>
 
                                     <span>CLEAR CART</span></a>
 
@@ -169,94 +169,27 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                     <div class="f-cart__pad-box">
-                                        <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
-
-                                        <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping
-                                            estimate.</span>
-                                        <div class="u-s-m-b-30">
-
-                                            <!--====== Select Box ======-->
-
-                                            <label class="gl-label" for="shipping-country">COUNTRY *</label><select
-                                                class="select-box select-box--primary-style" id="shipping-country">
-                                                <option selected value="">Choose Country</option>
-                                                <option value="uae">United Arab Emirate (UAE)</option>
-                                                <option value="uk">United Kingdom (UK)</option>
-                                                <option value="us">United States (US)</option>
-                                            </select>
-                                            <!--====== End - Select Box ======-->
-                                        </div>
-                                        <div class="u-s-m-b-30">
-
-                                            <!--====== Select Box ======-->
-
-                                            <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select
-                                                class="select-box select-box--primary-style" id="shipping-state">
-                                                <option selected value="">Choose State/Province</option>
-                                                <option value="al">Alabama</option>
-                                                <option value="al">Alaska</option>
-                                                <option value="ny">New York</option>
-                                            </select>
-                                            <!--====== End - Select Box ======-->
-                                        </div>
-                                        <div class="u-s-m-b-30">
-
-                                            <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>
-
-                                            <input class="input-text input-text--primary-style" type="text"
-                                                id="shipping-zip" placeholder="Zip/Postal Code">
-                                        </div>
-                                        <div class="u-s-m-b-30">
-
-                                            <a class="f-cart__ship-link btn--e-transparent-brand-b-2"
-                                                href="cart.html">CALCULATE SHIPPING</a>
-                                        </div>
-
-                                        <span class="gl-text">Note: There are some countries where free shipping is
-                                            available otherwise our flat rate charges or country delivery charges will be
-                                            apply.</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                    <div class="f-cart__pad-box">
-                                        <h1 class="gl-h1">NOTE</h1>
-
-                                        <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>
-                                        <div>
-
-                                            <label for="f-cart-note"></label><textarea
-                                                class="text-area text-area--primary-style" id="f-cart-note"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                    <div class="f-cart__pad-box">
                                         <div class="u-s-m-b-30">
                                             <table class="f-cart__table">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>SHIPPING</td>
-                                                        <td>$4.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TAX</td>
-                                                        <td>$0.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>SUBTOTAL</td>
-                                                        <td>$379.00</td>
-                                                    </tr>
-                                                    <tr>
+                                                   @php
+                                                   $total = 0;
+                                                   $cantidad =0;
+                                                   foreach ($cartProducts as $key => $cartProduct) {
+                                                  for ($i=0; $i <1 ; $i++) { 
+                                                      $total +=$cartProduct['product']->price*$cartProduct['amount'];
+                                                  }
+                                                   }
+                                                   @endphp
                                                         <td>GRAND TOTAL</td>
-                                                        <td>$379.00</td>
+                                                        <td>{{number_format($total)}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div>
+                                        <div class="load-more">
 
-                                            <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button>
-                                        </div>
+                                            <button class="btn btn--e-brand" type="button" ><a href="{{route('cart.checkout')}}"> CheckOut </a></button></div>
                                     </div>
                                 </div>
                             </div>

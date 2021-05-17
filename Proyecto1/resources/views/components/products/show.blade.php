@@ -30,9 +30,14 @@
                                         <div class="pd-o-img-wrap" data-src="@if(count($product->images)>0)
                                             {{$product->images[0]->url}}
                                             @endif">
-                                            <img class="u-img-fluid" src="@if(count($product->images)>0)
-                                            {{$product->images[0]->url}}
-                                            @endif" data-zoom-image="{{$product->images[0]->url}}" alt=""></div>
+                                            @php
+                                             if ($product->images[0]->url==false)
+                                               $data='/images/product/'.$product->images[0]->img;
+                                               else{
+                                                $data= $product->images[0]->url;
+                                               }
+                                         @endphp
+                                            <img class="u-img-fluid" src="{{$data}}" data-zoom-image="{{$product->images[0]->url}}" alt=""></div>
                                         
                                     </div>
 
@@ -41,12 +46,11 @@
                                 <div class="u-s-m-t-15">
                                     <div class="slider-fouc">
                                         <div id="pd-o-thumbnail">
+                                            
                                             @for ($i = 0; $i < count($product->images); $i++)
+                                       
                                             <div>
-                                                <img class="u-img-fluid" src="
-                                                 @if(  count($product->images)>0)
-                                                {{$product->images[$i]->url}}
-                                                @endif" alt=""> 
+                                                <img class="u-img-fluid" src="{{$data}}" alt=""> 
                                             </div>
                                             @endfor
                                         </div>

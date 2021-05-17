@@ -9,9 +9,9 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
-                                    <h1 class="section__heading u-c-secondary u-s-m-b-12">TOP TRENDING</h1>
+                                    <h1 class="section__heading u-c-secondary u-s-m-b-12">TOP GEEK</h1>
 
-                                    <span class="section__span u-c-silver">CHOOSE CATEGORY</span>
+                                    <span class="section__span u-c-silver">GEEK CATEGORY</span>
                                 </div>
                             </div>
                         </div>
@@ -53,28 +53,24 @@
                                             <div class="product-o product-o--hover-on product-o--radius">
                                                 <div class="product-o__wrap">
                                                     
-                                                    
+                                                    @php
+                                             if ($product->images[0]->url==false)
+                                               $data='images/product/'.$product->images[0]->img;
+                                               else{
+                                                $data= $product->images[0]->url;
+                                               }
+                                         @endphp
                                                     <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
 
-                                                        <img class="aspect__img" src="{{count($product->images) > 0 ? $product->images[0]->url : 'images/product/electronic/product2.jpg'}}" alt=""></a>
+                                                        <img class="aspect__img" src="{{$data}}" alt=""></a>
                                                     <div class="product-o__action-wrap">
                                                         <ul class="product-o__action-list">
-                                                            <li>
-
-                                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus">
-                                                                    </i>
-                                                                </a>
-                                                                </li>
+                                                           
                                                             <li>
 
                                                                 <a href="{{ route('cart.addOne', ['product' => $product->id]) }}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
                                                                 
-                                                            <li>
-
-                                                                <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                            <li>
-
-                                                                <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -112,7 +108,7 @@
                             <div class="col-lg-12">
                                 <div class="load-more">
 
-                                    <button class="btn btn--e-brand" type="button" ><a href="{{route('products.loadmore','loadmore')}}"> LOADMORE </a></button></div>
+                                    <button class="btn btn--e-brand" type="button" ><a href="{{route('products.loadmore')}}"> LOADMORE </a></button></div>
                                     
                             </div>
                         </div>

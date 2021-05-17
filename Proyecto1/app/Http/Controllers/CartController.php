@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use phpDocumentor\Reflection\Types\This;
 
 class CartController extends Controller
 {
@@ -25,16 +26,108 @@ class CartController extends Controller
         }
         
     }
+    //funcion agregar producto uno en uno 
+    public function add(Product $product){
 
+      
+     
+        $cartProducts = session()->get('cart.products');
+        $indexFoundProduct = collect(session()->get('cart.products')) -> search(function ($cartProduct) use ($product) {
+
+            return $cartProduct['product']->id == $product->id ;
+        });
+
+       
+        if($indexFoundProduct) {
+
+            $cartProducts[$indexFoundProduct]['amount'] += '1';
+
+            session()->put('cart.products',$cartProducts);
+    
+            session()->flash('status',"se actualizo cantidad de $product->name en el carrito");
+    
+            }else {
+    
+                      // EN CASO QUE NO EXISTA EN EL CARRITO
+                      //3. SE HACE UN PUSH Y YA ESTA
+            session()->push('cart.products', ['product'=> $product, 'amount' => 1]);   
+            session()->flash('status',"se agrego producto $product->name al carrito");
+           
+            }
+
+ 
+    }
+    //funcion agregar producto uno en uno /redireccion loadmore
+    public function addOneTwo(Product $product)
+    {   
+        
+        $this->add($product);
+        return redirect()->route('products.loadmore');
+
+        
+    }
+    //funcion agregar producto uno en uno /redireccion loadmore
     public function addOne(Product $product)
     {   
-        $cartProducts = session()->get('cart.products');
-        $amount=1;
-        $cartProducts->push('cart.products', ['product' => $product, 'amount' => $amount]);
         
-        return redirect()->route('cart.index');
+        $this->add($product);
+        return redirect()->route('products.index');
 
         
+    }
+    function addProductsToCart ($productSelected,$amount) {
+
+        if(session()->has('cart') == false) {
+            session()->put('cart', [ 'products' => [] ]);
+        }
+
+        //1. VERIFICAR SI EL PRODUCTO QUE SE ESTA AGREGANDO EN EL MOMENTO YA EXISTE EN EL CARRITO
+
+        $cartProducts = session()->get('cart.products');
+        //forma sucia
+        //  $indexFoundProduct= -1 ;
+
+
+        // foreach ($cartProducts as $index => $cartProduct) {
+           
+        //     if( $cartProduct['product']->id ==  $productSelected -> id) {
+        //         $indexFoundProduct = $index;
+        //         break;
+        //     }
+
+        // }
+
+        //forma limpia
+
+        $indexFoundProduct = collect(session()->get('cart.products')) -> search(function ($cartProduct) use ($productSelected) {
+
+            return $cartProduct['product']->id == $productSelected->id ;
+        });
+
+        // print_r($indexFoundProduct);
+        // dd($cartProducts);
+
+
+        if($indexFoundProduct != false) {
+        //2.TOMAR DESICION EN CASO POSITIVO
+        //2.1 ACTUALIZAR EN EL CARRITO LA CANTIDAD DE PRODUCTOS, SUMANDO LOS QUE YA EXISTEN CON LOS QUE ESTAN AGREGANDO
+        
+        $cartProducts[$indexFoundProduct]['amount'] += $amount;
+
+        //2.2 REEMPLAZAR NUEVAMENTE TODO EL CARRITO
+        session()->put('cart.products',$cartProducts);
+
+        session()->flash('status',"se actualizo cantidad de $productSelected->name en el carrito");
+
+        }else {
+
+                  // EN CASO QUE NO EXISTA EN EL CARRITO
+                  //3. SE HACE UN PUSH Y YA ESTA
+        session()->push('cart.products', ['product'=> $productSelected, 'amount' => $amount]);   
+        session()->flash('status',"se agrego producto $productSelected->name al carrito");
+        
+       
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -55,30 +148,13 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $productSelected = Product::find($request->productId);
-
+        
         $amount = $request -> amount;
 
-        $cartProducts = session() -> get ('cart.products');
-
-        if($request->session()->has('cart') == false) {
-            $request->session()->put('cart', [ 'products' => [] ]);
-        }
-        /*
-        foreach ($cartProducts as $products ) {
-            foreach ($products as $product){
-               $id = $product->id;
-               if($id === $productSelected->id){
-                 
-               }
-               else{
-                $request -> session() -> push('cart.products', ['product' => $productSelected, 'amount'=> $amount ] );
-                return redirect()->route('cart.index');
-               }
-            }
-        }*/
-
-        $request -> session() -> push('cart.products', ['product' => $productSelected, 'amount'=> $amount ] );
-        return redirect()->route('cart.index');
+        $this->addProductsToCart($productSelected,$amount);
+       
+        return redirect()->route('products.index');
+      
     }
 
     /**
@@ -121,11 +197,49 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function destroyAll(){
+        $cartProducts = session() -> get ('cart.products');
+        unset($cartProducts);
+        session() -> put ('cart', [ 'products' => [] ]);
+        session()->flash('status',"Carrito eliminado correctamente");
+    
+        return redirect()->route('products.index');
+
+
+    }
+    
+
     public function destroy($id)
     {
+        $cartProducts = session() -> get ('cart.products');
+        $indexFoundProduct = -1;
+
+        foreach (   $cartProducts as $index => $cartProduct ) {
+
+            if (  $cartProduct['product'] -> id == $id){
+                $indexFoundProduct = $index;
+                $name =$cartProduct['product'] -> name;
+                break;
+            }
+
+        }
+
+        if($indexFoundProduct != -1){
+            unset($cartProducts[$index]);
+            session() -> put ('cart', [ 'products' => [] ]);
+            session()->flash('status',"se elimino producto $name del carrito");
+        }
         
-            dd($id);
-        
+        session() ->put('cart.products',$cartProducts);
+        if (count($cartProducts)>0){
+            return redirect()->route('cart.index');
+        }else{
+            return redirect()->route('products.index');
+        }
+
+       
     }
+
+    
         
 }

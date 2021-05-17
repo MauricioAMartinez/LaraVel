@@ -25,9 +25,9 @@
                                         @foreach ($categories as $category)
                                             <li class="has-list">
 
-                                                <a href="#">{{ $category->name }}</a>
+                                                <a href=" {{route('products.loadmorefilter',[$category->id])}} ">{{ $category->name }}</a>
 
-                                                <span class="category-list__text u-s-m-l-6">(pendiente-product_has_category)</span>
+                                               
 
                                                
                                             </li>
@@ -104,31 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="u-s-m-b-30">
-                                <div class="shop-w">
-                                    <div class="shop-w__intro-wrap">
-                                        <h1 class="shop-w__h">SHIPPING</h1>
-
-                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-shipping" data-toggle="collapse"></span>
-                                    </div>
-                                    <div class="shop-w__wrap collapse show" id="s-shipping">
-                                        <ul class="shop-w__list gl-scroll">
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="free-shipping">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="free-shipping">Free Shipping</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="u-s-m-b-30">
                                 <div class="shop-w">
                                     <div class="shop-w__intro-wrap">
@@ -157,219 +133,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="u-s-m-b-30">
-                                <div class="shop-w">
-                                    <div class="shop-w__intro-wrap">
-                                        <h1 class="shop-w__h">MANUFACTURER</h1>
-
-                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-manufacturer" data-toggle="collapse"></span>
-                                    </div>
-                                    <div class="shop-w__wrap collapse show" id="s-manufacturer">
-                                        <ul class="shop-w__list-2">
-                                            <li>
-                                                <div class="list__content">
-
-                                                    <input type="checkbox" checked>
-
-                                                    <span>Calvin Klein</span></div>
-
-                                                <span class="shop-w__total-text">(23)</span>
-                                            </li>
-                                            <li>
-                                                <div class="list__content">
-
-                                                    <input type="checkbox">
-
-                                                    <span>Diesel</span></div>
-
-                                                <span class="shop-w__total-text">(2)</span>
-                                            </li>
-                                            <li>
-                                                <div class="list__content">
-
-                                                    <input type="checkbox">
-
-                                                    <span>Polo</span></div>
-
-                                                <span class="shop-w__total-text">(2)</span>
-                                            </li>
-                                            <li>
-                                                <div class="list__content">
-
-                                                    <input type="checkbox">
-
-                                                    <span>Tommy Hilfiger</span></div>
-
-                                                <span class="shop-w__total-text">(9)</span>
-                                            </li>
-                                            <li>
-                                                <div class="list__content">
-
-                                                    <input type="checkbox">
-
-                                                    <span>Ndoge</span></div>
-
-                                                <span class="shop-w__total-text">(3)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <div class="shop-w">
-                                    <div class="shop-w__intro-wrap">
-                                        <h1 class="shop-w__h">COLOR</h1>
-
-                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-color" data-toggle="collapse"></span>
-                                    </div>
-                                    <div class="shop-w__wrap collapse show" id="s-color">
-                                        <ul class="shop-w__list gl-scroll">
-                                            <li>
-                                                <div class="color__check">
-
-                                                    <input type="checkbox" id="jet">
-
-                                                    <label class="color__check-label" for="jet" style="background-color: #333333"></label></div>
-
-                                                <span class="shop-w__total-text">(2)</span>
-                                            </li>
-                                            <li>
-                                                <div class="color__check">
-
-                                                    <input type="checkbox" id="folly">
-
-                                                    <label class="color__check-label" for="folly" style="background-color: #FF0055"></label></div>
-
-                                                <span class="shop-w__total-text">(4)</span>
-                                            </li>
-                                            <li>
-                                                <div class="color__check">
-
-                                                    <input type="checkbox" id="yellow">
-
-                                                    <label class="color__check-label" for="yellow" style="background-color: #FFFF00"></label></div>
-
-                                                <span class="shop-w__total-text">(6)</span>
-                                            </li>
-                                            <li>
-                                                <div class="color__check">
-
-                                                    <input type="checkbox" id="granite-gray">
-
-                                                    <label class="color__check-label" for="granite-gray" style="background-color: #605F5E"></label></div>
-
-                                                <span class="shop-w__total-text">(8)</span>
-                                            </li>
-                                            <li>
-                                                <div class="color__check">
-
-                                                    <input type="checkbox" id="space-cadet">
-
-                                                    <label class="color__check-label" for="space-cadet" style="background-color: #1D3461"></label></div>
-
-                                                <span class="shop-w__total-text">(10)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <div class="shop-w">
-                                    <div class="shop-w__intro-wrap">
-                                        <h1 class="shop-w__h">SIZE</h1>
-
-                                        <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>
-                                    </div>
-                                    <div class="shop-w__wrap collapse" id="s-size">
-                                        <ul class="shop-w__list gl-scroll">
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="xs">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="xs">XS</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(2)</span>
-                                            </li>
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="small">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="small">Small</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(4)</span>
-                                            </li>
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="medium">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="medium">Medium</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(6)</span>
-                                            </li>
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="large">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="large">Large</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(8)</span>
-                                            </li>
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="xl">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="xl">XL</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(10)</span>
-                                            </li>
-                                            <li>
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="xxl">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="xxl">XXL</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-
-                                                <span class="shop-w__total-text">(12)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                           
+                            
                         </div>
                     </div>
                 </div>
@@ -383,7 +149,7 @@
 
                                     <span>Related Searches:</span>
 
-                                    <a class="gl-tag btn--e-brand-shadow" href="#"  > {{$category->name}} </a>
+                                    <a class="gl-tag btn--e-brand-shadow" href="#"  > All </a>
 
                             
                             </div>
@@ -393,24 +159,7 @@
                                     <span class="js-shop-grid-target is-active">Grid</span>
 
                                     <span class="js-shop-list-target">List</span></div>
-                                <form>
-                                    <div class="tool-style__form-wrap">
-                                        <div class="u-s-m-b-8"><select class="select-box select-box--transparent-b-2">
-                                                <option>Show: 8</option>
-                                                <option selected>Show: 12</option>
-                                                <option>Show: 16</option>
-                                                <option>Show: 28</option>
-                                            </select></div>
-                                        <div class="u-s-m-b-8"><select class="select-box select-box--transparent-b-2">
-                                                <option selected>Sort By: Newest Items</option>
-                                                <option>Sort By: Latest Items</option>
-                                                <option>Sort By: Best Selling</option>
-                                                <option>Sort By: Best Rating</option>
-                                                <option>Sort By: Lowest Price</option>
-                                                <option>Sort By: Highest Price</option>
-                                            </select></div>
-                                    </div>
-                                </form>
+                            
                             </div>
                         </div>
                         <div class="shop-p__collection">
@@ -419,22 +168,26 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product-m">
                                         <div class="product-m__thumb">
-
+                                         
                                             <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{  route ('products.show', ['product' => $product->id] )   }}">
-
-                                                <img class="aspect__img" src="{{ count($product->images) > 0 ? $product->images[0]->url : 'images/product/electronic/product2.jpg' }}" alt=""></a>
+                                         @php
+                                             if ($product->images[0]->url==false)
+                                               $data='images/product/'.$product->images[0]->img;
+                                               else{
+                                                $data= $product->images[0]->url;
+                                               }
+                                         @endphp
+                                               
+                                                <img class="aspect__img" src="{{$data}}" alt=""></a>
                                             <div class="product-m__quick-look">
 
                                                 <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
                                             <div class="product-m__add-cart">
 
-                                                <a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
+                                                <a href="{{ route('cart.addOneTwo', ['product' => $product->id]) }}" class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
                                         </div>
                                         <div class="product-m__content">
-                                            
-                                            <div class="product-m__category">
-                                                
-                                                <a href="shop-side-version-2.html">  {{$category->name}} </a></div>
+                                       
                                             <div class="product-m__name">
                                               
                                                 <a href="{{  route ('products.show', ['product' => $product->id] )   }}">{{ $product->name }}</a></div>
@@ -470,28 +223,7 @@
                                 
                             </div>
                         </div>
-                        <div class="u-s-p-y-60">
-
-                            <!--====== Pagination ======-->
-                            <ul class="shop-p__pagination">
-                                <li class="is-active">
-
-                                    <a href="shop-grid-left.html">1</a></li>
-                                <li>
-
-                                    <a href="shop-grid-left.html">2</a></li>
-                                <li>
-
-                                    <a href="shop-grid-left.html">3</a></li>
-                                <li>
-
-                                    <a href="shop-grid-left.html">4</a></li>
-                                <li>
-
-                                    <a class="fas fa-angle-right" href="shop-grid-left.html"></a></li>
-                            </ul>
-                            <!--====== End - Pagination ======-->
-                        </div>
+                        
                     </div>
                 </div>
             </div>

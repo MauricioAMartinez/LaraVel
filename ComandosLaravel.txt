@@ -45,3 +45,21 @@ composer Update
 php artisan config:cache
 
 
+------------
+
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+
+crear un ludux.css
+crear un ludus .js
+head y default modificar
+ludix.js
+
+ludux css
+ludux.js
+
+
+
+

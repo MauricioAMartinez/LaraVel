@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\CartController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +17,21 @@ use App\Models\Product;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
 Route::get('cart/addOne/{product}', [CartController::class, 'addOne'])->name('cart.addOne');
+Route::get('cart/addOneTwo/{product}', [CartController::class, 'addOneTwo'])->name('cart.addOneTwo');
 Route::get('cart/destroy/{id}', [CartController::class,'destroy'])->name('cart.destroy');
-Route::get('products/{loadmore}', [CartController::class, 'loadmore'])->name('products.loadmore');
-/*Route::get('loadmore', function () {
-    $categories = Category::all(); 
-    $products = Product::all();
-    return view('components/products.loadmore',compact('products','categories'));
-});*/
+Route::get('destroy', [CartController::class,'destroyAll'])->name('cart.destroyAll');
+Route::get('loadmore', [ProductController::class,'loadmore'])->name('products.loadmore');
+Route::get('loadmore/category/{category}', [ProductController::class,'loadmorefilter'])->name('products.loadmorefilter');
