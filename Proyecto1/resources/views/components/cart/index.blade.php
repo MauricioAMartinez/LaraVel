@@ -188,8 +188,22 @@
                                             </table>
                                         </div>
                                         <div class="load-more">
-
-                                            <button class="btn btn--e-brand" type="button" ><a href="{{route('cart.checkout')}}"> CheckOut </a></button></div>
+                                            @php
+                                                if (Auth::check()){
+                                                    $ruta = route('cart.checkout');
+                                                }
+                                            
+                                            else{
+                                                $ruta = route('login');
+                                            
+                                            }
+                                                
+                                       
+                                            @endphp
+                                            
+                                            
+                                           
+                                            <button class="btn btn--e-brand" type="button" ><a href="{{$ruta}}"> CheckOut </a></button></div>
                                     </div>
                                 </div>
                             </div>

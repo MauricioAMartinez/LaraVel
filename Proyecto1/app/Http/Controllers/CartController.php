@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderHasProduct;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use phpDocumentor\Reflection\Types\This;
@@ -240,6 +243,44 @@ class CartController extends Controller
        
     }
 
+    public function checkout (){
+       
+        if(session() -> has('cart') == false ) {
+            return redirect() -> route('products.index');    
+        }
+        else {
+
+            $cartProducts = session() -> get ('cart.products');
+            return view('components/cart.chekout', compact('cartProducts'));
+        }
+        
+    }
+
+    public function payment($total){
+        $cartProducts = session() -> get ('cart.products');
+        
+       $user = User::all();
+       $user=$user[0]->id;
     
+     $neworder = new Order();
+     $neworder->payment = 'paypal';
+     $neworder->state = 'active';
+     $neworder->final_price= $total;
+     $neworder->user_id = $user;
+        $neworder->save();
+        session()->flash('status',"Orden Registrada");
+        return redirect()->route('products.index');
+        /*
+        $ss=0;
+     $newOrderHasProduct = new OrderHasProduct();  
+     foreach ($cartProducts as $key => $value) {
+        for ($i=0; $i < count($cartProducts); $i++) { 
+           dd($value['product']->id);
+        }
+        
+     } 
+     */
+     
+    }
         
 }

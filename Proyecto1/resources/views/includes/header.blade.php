@@ -1,6 +1,4 @@
 
-@extends('layouts.default')
-@section('content')
 <!--====== Nav 1 ======-->
 <style>
     /* The close button */
@@ -91,7 +89,7 @@
 
                                 <li>
 
-                                    <a href="{{ route('logout')}}"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                    <a href=""><i class="fas fa-lock-open u-s-m-r-6"></i>
 
                                         <span>Signout</span></a>
                                 </li>
@@ -844,18 +842,18 @@
                                 <div class="mini-product-container gl-scroll u-s-m-b-15">
 
                                     <!--====== Card for mini cart ======-->
-
+                               
                                     @if (session()->has('cart'))
 
                                         @foreach (session()->get('cart.products') as $cartProduct)
                                             <div class="card-mini-product">
                                                 <div class="mini-product">
                                                     <div class="mini-product__image-wrapper">
-
+                                                   
                                                         <a class="mini-product__link" href="product-detail.html">
 
                                                             <img class="u-img-fluid"
-                                                                src="{{ $cartProduct['product']->images[0]->url }}"
+                                                                src=" {{ $cartProduct['product']->images[0]->url }}"
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="mini-product__info-wrapper">
@@ -900,32 +898,57 @@
                                 <!--====== Mini Product Statistics ======-->
                                 <div class="mini-product-stat">
                                     <div class="mini-total">
-                                        @php/*
-                                        $total = 0;
-                                        $cantidad =0;
-                                        $cartProducts=session()->get('cart.products');
-                                        foreach ($cartProducts as $key => $cartProduct) {
-                                       for ($i=0; $i <1 ; $i++) { 
+                                        @php
+                                        if (Auth::check()){
+                                            $total = 0;
+                                        $cantidad =0; }
+                                        if(session()->has('cart') == false) {
+            session()->put('cart', [ 'products' => [] ]);
+            $total = 0;
+                                        foreach (session()->get('cart.products') as $cartProduct) 
+                                        {
+                                            for ($i=0; $i <1 ; $i++) { 
                                            $total +=$cartProduct['product']->price*$cartProduct['amount'];
-                                       }
-                                        }*/
-                                        @endphp
+                                                     }
+                                        }
+                                        }
+                                    
+                                    else{
+                                        $total = 0;
+                                        foreach (session()->get('cart.products') as $cartProduct) 
+                                        {
+                                            for ($i=0; $i <1 ; $i++) { 
+                                           $total +=$cartProduct['product']->price*$cartProduct['amount'];
+                                                     }
+                                        }
+                                        
+                                    }
+                                        
+                               
+                                    @endphp
+                                  
                                         <span class="subtotal-text">SUBTOTAL</span>
 
                                         <span class="subtotal-value">
-
-                                            @if (session()->has('cart'))
-                                            numero
-
-                                            @else
-                                                0
-                                            @endif
-
+                
+                                            {{number_format($total)}}
                                         </span>
                                     </div>
                                     <div class="mini-action">
+                                        @php
 
-                                        <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO
+                                        if (Auth::check()){
+                                            $ruta = route('cart.checkout');
+                                        }
+                                    
+                                    else{
+                                        $ruta = route('login');
+                                    
+                                    }
+                                        
+                               
+                                    @endphp
+                                        <a class="mini-link btn--e-brand-b-2" href="{{$ruta}}">PROCEED TO
                                             CHECKOUT</a>
 
                                         <a class="mini-link btn--e-transparent-secondary-b-2"
@@ -946,4 +969,4 @@
         <!--====== End - Secondary Nav ======-->
     </div>
 </nav>
-<!--====== End - Nav 2 ======-->@endsection
+<!--====== End - Nav 2 ======-->

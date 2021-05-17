@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
-use App\Models\Category;
-use App\Models\Product;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +31,9 @@ Route::resource('cart', CartController::class);
 Route::get('cart/addOne/{product}', [CartController::class, 'addOne'])->name('cart.addOne');
 Route::get('cart/addOneTwo/{product}', [CartController::class, 'addOneTwo'])->name('cart.addOneTwo');
 Route::get('cart/destroy/{id}', [CartController::class,'destroy'])->name('cart.destroy');
+Route::get('checkout', [CartController::class,'checkout'])->name('cart.checkout');
+Route::get('cart/payment/{total}}', [CartController::class,'payment'])->name('cart.payment');
+
 Route::get('destroy', [CartController::class,'destroyAll'])->name('cart.destroyAll');
 Route::get('loadmore', [ProductController::class,'loadmore'])->name('products.loadmore');
 Route::get('loadmore/category/{category}', [ProductController::class,'loadmorefilter'])->name('products.loadmorefilter');
